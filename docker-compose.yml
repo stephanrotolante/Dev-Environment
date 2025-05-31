@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  dev-service:
+    container_name: name
+    build:
+      context: .
+      dockerfile: Development.Dockerfile
+    volumes:
+      - ./:/app
