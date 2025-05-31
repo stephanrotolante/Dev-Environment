@@ -7,9 +7,14 @@ RUN ulimit -c unlimited
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-RUN groupadd -g 1000 stephan
-RUN useradd -u 1000 -g 1000 -m -s /bin/bash stephan
-USER stephan
+ARG USERNAME
+ARG USER_UID
+ARG USER_GID
+
+RUN groupadd -g $USER_GID $USERNAME \
+    && useradd -u $USER_UID -g $USER_GID -m -s /bin/bash $USERNAME
+
+USER $USERNAME
 
 WORKDIR /app
 
