@@ -1,8 +1,7 @@
 FROM debian:11.11-slim
 
-RUN apt update
-
-RUN ulimit -c unlimited
+RUN apt update \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
